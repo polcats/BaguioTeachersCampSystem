@@ -56,10 +56,9 @@ DROP TABLE IF EXISTS `cottages_guesthouses`;
 CREATE TABLE `cottages_guesthouses` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `type` enum('cottage','guesthouse','textbookhouse') NOT NULL,
-  `room_no` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
   `bdrms` varchar(45) NOT NULL,
   `beds` varchar(45) NOT NULL,
-  `floor` enum('up','down','base') DEFAULT NULL,
   `status` enum('available','not_available') NOT NULL DEFAULT 'available',
   `deped` int(11) NOT NULL,
   `govt` int(11) NOT NULL,
@@ -74,7 +73,7 @@ CREATE TABLE `cottages_guesthouses` (
 
 LOCK TABLES `cottages_guesthouses` WRITE;
 /*!40000 ALTER TABLE `cottages_guesthouses` DISABLE KEYS */;
-INSERT INTO `cottages_guesthouses` VALUES (1,'cottage','102','4','10',NULL,'available',1700,2100,2600),(2,'cottage','103','4','10',NULL,'available',1700,2100,2600),(3,'cottage','104','4','10',NULL,'available',1700,2100,2600),(4,'cottage','105','4','10',NULL,'available',1700,2100,2600),(5,'cottage','106','4','10',NULL,'available',1700,2100,2600),(6,'cottage','201','3','7',NULL,'available',1700,2100,2600),(7,'cottage','202','3','7',NULL,'available',1400,1700,2300),(8,'cottage','203','3','7',NULL,'available',1400,1700,2300),(9,'cottage','209','3','7',NULL,'available',1400,1700,2300),(10,'cottage','204','2','5',NULL,'available',1100,1400,1700),(11,'cottage','205','2','5',NULL,'available',1100,1400,1700),(12,'cottage','206','2','5',NULL,'available',1100,1400,1700),(13,'cottage','207','2','5',NULL,'available',1100,1400,1700),(14,'cottage','208','2','5',NULL,'available',1100,1400,1700),(15,'cottage','210','4','10','up','available',1700,2100,2600),(16,'cottage','210','3','7','down','available',1400,1700,2300),(17,'cottage','211','5','18',NULL,'available',2100,2600,3300),(18,'cottage','212','3','7','up','available',1400,1700,2300),(19,'cottage','212','3','6','down','available',1100,1400,1700),(20,'cottage','1','5','17',NULL,'available',2100,2600,3300),(21,'cottage','2','5','14','up','available',2100,2600,3300),(22,'cottage','2','3','9','down','available',1400,1700,2300),(23,'cottage','3','3','10','up','available',1700,2100,2600),(24,'cottage','3','3','9','down','available',1400,1700,2300),(25,'cottage','213A','2','4',NULL,'available',1100,1400,1700),(26,'cottage','213B','2','4',NULL,'available',1100,1400,1700),(27,'cottage','213C','3','6',NULL,'available',1300,1600,1900),(28,'guesthouse','3','3','6','down','available',1300,1600,1900),(29,'guesthouse','3','3','6','base','available',1300,1600,1900),(30,'guesthouse','4','4','9',NULL,'available',1400,1700,2300),(31,'guesthouse','4A','2','5',NULL,'available',1100,1400,1700),(32,'guesthouse','4B','4','12',NULL,'available',2100,2600,3300),(33,'guesthouse','4C','3','7',NULL,'available',1700,2100,2600),(34,'guesthouse','4D','3','7',NULL,'available',1700,2100,2600),(35,'guesthouse','5','4','14',NULL,'available',2100,2600,3300),(36,'guesthouse','6','6','14',NULL,'available',2100,2600,3300),(37,'guesthouse','7','3','7',NULL,'available',1400,1700,2300),(38,'guesthouse','8','4','10','up','available',1700,2100,2600),(39,'guesthouse','8','2','5','down','available',1100,1400,1700),(40,'guesthouse','9','3','7',NULL,'available',1400,1700,2300),(41,'guesthouse','10','4','9',NULL,'available',1400,1700,2300),(42,'guesthouse','11','5','19',NULL,'available',2100,2600,3300),(43,'textbookhouse','1','2','5','up','available',1100,1400,1700),(44,'textbookhouse','1','3','8','down','available',1400,1700,1900),(45,'guesthouse','4E','3','9',NULL,'available',1700,2100,2600),(48,'guesthouse','4F','3','9',NULL,'available',1700,2100,2600),(49,'guesthouse','5','3','8','down','available',1400,1700,2300),(50,'guesthouse','8','2','4','base','available',1100,1400,1700),(51,'guesthouse','10','1','3','base','available',1100,1400,1700),(52,'guesthouse','11','3','11','base','available',2100,2600,3300);
+INSERT INTO `cottages_guesthouses` VALUES (1,'cottage','102','4','10','available',1700,2100,2600),(2,'cottage','103','4','10','available',1700,2100,2600),(3,'cottage','104','4','10','available',1700,2100,2600),(4,'cottage','105','4','10','available',1700,2100,2600),(5,'cottage','106','4','10','available',1700,2100,2600),(6,'cottage','201','3','7','available',1700,2100,2600),(7,'cottage','202','3','7','available',1400,1700,2300),(8,'cottage','203','3','7','available',1400,1700,2300),(9,'cottage','209','3','7','available',1400,1700,2300),(10,'cottage','204','2','5','available',1100,1400,1700),(11,'cottage','205','2','5','available',1100,1400,1700),(12,'cottage','206','2','5','available',1100,1400,1700),(13,'cottage','207','2','5','available',1100,1400,1700),(14,'cottage','208','2','5','available',1100,1400,1700),(15,'cottage','210 up','4','10','available',1700,2100,2600),(16,'cottage','210 down','3','7','available',1400,1700,2300),(17,'cottage','211','5','18','available',2100,2600,3300),(18,'cottage','212 up','3','7','available',1400,1700,2300),(19,'cottage','212 down','3','6','available',1100,1400,1700),(20,'cottage','1','5','17','available',2100,2600,3300),(21,'cottage','2 up','5','14','available',2100,2600,3300),(22,'cottage','2 down','3','9','available',1400,1700,2300),(23,'cottage','3 up','3','10','available',1700,2100,2600),(24,'cottage','3 down','3','9','available',1400,1700,2300),(25,'cottage','213A','2','4','available',1100,1400,1700),(26,'cottage','213B','2','4','available',1100,1400,1700),(27,'cottage','213C','3','6','available',1300,1600,1900),(28,'guesthouse','3 down','3','6','available',1300,1600,1900),(29,'guesthouse','3 base','3','6','available',1300,1600,1900),(30,'guesthouse','4','4','9','available',1400,1700,2300),(31,'guesthouse','4A','2','5','available',1100,1400,1700),(32,'guesthouse','4B','4','12','available',2100,2600,3300),(33,'guesthouse','4C','3','7','available',1700,2100,2600),(34,'guesthouse','4D','3','7','available',1700,2100,2600),(35,'guesthouse','5','4','14','available',2100,2600,3300),(36,'guesthouse','6','6','14','available',2100,2600,3300),(37,'guesthouse','7','3','7','available',1400,1700,2300),(38,'guesthouse','8 up','4','10','available',1700,2100,2600),(39,'guesthouse','8 down','2','5','available',1100,1400,1700),(40,'guesthouse','9','3','7','available',1400,1700,2300),(41,'guesthouse','10','4','9','available',1400,1700,2300),(42,'guesthouse','11','5','19','available',2100,2600,3300),(43,'textbookhouse','1 up','2','5','available',1100,1400,1700),(44,'textbookhouse','1 down','3','8','available',1400,1700,1900),(45,'guesthouse','4E','3','9','available',1700,2100,2600),(48,'guesthouse','4F','3','9','available',1700,2100,2600),(49,'guesthouse','5 down','3','8','available',1400,1700,2300),(50,'guesthouse','8 base','2','4','available',1100,1400,1700),(51,'guesthouse','10 base','1','3','available',1100,1400,1700),(52,'guesthouse','11 base','3','11','available',2100,2600,3300);
 /*!40000 ALTER TABLE `cottages_guesthouses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,6 +190,38 @@ LOCK TABLES `employees` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `facilities`
+--
+
+DROP TABLE IF EXISTS `facilities`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `facilities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `type` enum('conference_halls','cottages_guesthouses','dining_kitchen','dormitories','other_services') NOT NULL,
+  `status` enum('available','not_available') NOT NULL DEFAULT 'available',
+  `deped` int(11) DEFAULT NULL,
+  `govt` int(11) DEFAULT NULL,
+  `private` int(11) DEFAULT NULL,
+  `liveindeped` int(11) DEFAULT NULL,
+  `liveoutdeped` int(11) DEFAULT NULL,
+  `liveinnondeped` int(11) DEFAULT NULL,
+  `liveoutnondeped` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `facilities`
+--
+
+LOCK TABLES `facilities` WRITE;
+/*!40000 ALTER TABLE `facilities` DISABLE KEYS */;
+/*!40000 ALTER TABLE `facilities` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `facilities_used`
 --
 
@@ -206,7 +237,7 @@ CREATE TABLE `facilities_used` (
   KEY `reser_id_idx` (`reservation_id`),
   KEY `resr_idx` (`reservation_id`),
   CONSTRAINT `resr` FOREIGN KEY (`reservation_id`) REFERENCES `reservations` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +246,7 @@ CREATE TABLE `facilities_used` (
 
 LOCK TABLES `facilities_used` WRITE;
 /*!40000 ALTER TABLE `facilities_used` DISABLE KEYS */;
-INSERT INTO `facilities_used` VALUES (2,1,4,'dormitories'),(3,2,15,'cottages_guesthouses'),(4,3,1,'cottages_guesthouses');
+INSERT INTO `facilities_used` VALUES (2,1,4,'dormitories'),(3,2,15,'cottages_guesthouses'),(4,3,1,'cottages_guesthouses'),(17,4,2,'dining_kitchen'),(18,5,1,'conference_halls'),(19,6,18,'cottages_guesthouses'),(20,7,2,'dormitories'),(21,8,10,'dormitories'),(22,9,21,'cottages_guesthouses'),(23,10,4,'conference_halls');
 /*!40000 ALTER TABLE `facilities_used` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,7 +331,7 @@ CREATE TABLE `reservations` (
   `activity` varchar(45) DEFAULT NULL,
   `status` enum('confirmed','unconfirmed','request') NOT NULL DEFAULT 'request',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,7 +340,7 @@ CREATE TABLE `reservations` (
 
 LOCK TABLES `reservations` WRITE;
 /*!40000 ALTER TABLE `reservations` DISABLE KEYS */;
-INSERT INTO `reservations` VALUES (1,'John Doe','deped','organization','2017-06-14','2017-06-16',20,'09179322197','seminar','request'),(2,'Jane Doe','govt','individual','2017-06-18','2017-06-20',5,'09302997498','workshop','confirmed'),(3,'Juan DelaCruz','private','individual','2017-06-22','2017-06-29',1,'09111223456','vacation','unconfirmed');
+INSERT INTO `reservations` VALUES (1,'John Doe','deped','organization','2017-06-14','2017-06-16',20,'09179322197','seminar','request'),(2,'Jane Doe','govt','individual','2017-06-18','2017-06-20',5,'09302997498','workshop','confirmed'),(3,'Juan DelaCruz','private','individual','2017-06-22','2017-06-29',1,'09111223456','vacation','unconfirmed'),(4,'Dominik Deleon','deped','individual','2017-06-29','2017-07-03',5,'09124758392','jogging','request'),(5,'University of Makati','deped','organization','2017-12-01','2017-12-25',150,'09654365721','seminar','confirmed'),(6,'Taylor Shaw','private','individual','2017-08-15','2017-08-17',2,'09752567549','vacation','request'),(7,'Cebu Pacific','private','organization','2018-01-20','2018-01-30',30,'09993565432','seminar','confirmed'),(8,'Dbp','govt','organization','2017-07-03','2017-07-13',20,'09156433464','seminar','confirmed'),(9,'John Felizardo','private','individual','2017-07-13','2017-07-15',1,'09543462342','vacation','request'),(10,'University of the Philippines Diliman','deped','organization','2017-07-15','2017-07-25',100,'09765753345','seminar','unconfirmed');
 /*!40000 ALTER TABLE `reservations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -322,4 +353,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-14 10:46:31
+-- Dump completed on 2017-06-14 14:55:25
