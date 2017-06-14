@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8" />
+   <link rel="icon" type="image/png" href="assets/img/logo.png">
+
+   <title>Baguio Teacher's Camp</title>
+
+   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+   <meta name="viewport" content="width=device-width" />
+   <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+   <link href="assets/css/animate.min.css" rel="stylesheet" />
+   <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet" />
+   <link href='assets/fonts/Roboto.ttf' rel='stylesheet' type='text/css'>
+   <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+   <!--Navigation-->
+   <div class="wrapper">
+      <div class="sidebar" data-color="green" ; data-image="assets/img/sidebar-5.jpg">
+
+         <div class="sidebar-wrapper">
+            <div class="logo">
+               <a href="dashboard.html" class="simple-text">
+                    Baguio Teacher's Camp
+                </a>
+            </div>
+
+            <ul class="nav">
+               <li class="active">
+                  <a href="dashboard.html">
+                     <i class="pe-7s-graph"></i>
+                     <p>Dashboard</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="newGuest.html">
+                     <i class="pe-7s-user"></i>
+                     <p>New Guest</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="validation.html">
+                     <i class="pe-7s-id"></i>
+                     <p>Validate Forms</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="reservation.html">
+                     <i class="pe-7s-date"></i>
+                     <p>Reservation List</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="guestRecords.html">
+                     <i class="pe-7s-note2"></i>
+                     <p>Guests' Record</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="signin.html">
+                     <i class="pe-7s-close"></i>
+                     <p>Log Out</p>
+                  </a>
+               </li>
+            </ul>
+         </div>
+      </div>
+
+      <div class="main-panel">
+         <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+               <div class="navbar-header">
+                  <a class="navbar-brand" href="#">Dashboard</a>
+               </div>
+               <div class="collapse navbar-collapse">
+                  <ul class="nav navbar-nav navbar-left">
+                     <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                           <i class="fa fa-dashboard"></i>
+                           <p class="hidden-lg hidden-md">Dashboard</p>
+                        </a>
+                     </li>
+
+                     <li class="separator hidden-lg hidden-md"></li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+
+
+         <div class="content">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-md-8">
+                     <div class="card">
+                        <div class="header">
+                           <h4 class="title">Fill up the Registration Form.</h4>
+                        </div>
+                        <div class="content">
+                           <form>
+                              <div class="row">
+                                 <div class="col-md-5">
+                                    <div class="form-group">
+                                       <label>Registration No.</label>
+                                       <!--disabled-->
+                                       <input type="text" class="form-control" disabled placeholder="" value="G0007283">
+                                    </div>
+                                 </div>
+                              </div>
+                              <!--end of first row-->
+
+                              <div class="row">
+                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                       <label>Name of Guest/Group/Association</label>
+                                       <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                 </div>
+                              </div>
+                              <!--end of 2nd row-->
+
+                              <div class="row">
+                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                       <label>Complete Home Address (Office Address)</label>
+                                       <input type="text" class="form-control" placeholder="Home Address" value="Office/House No.,Street, District, City, Province, Zip Code">
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="row">
+                                 <div class="col-md-5">
+                                    <div class="form-group">
+                                       <label>Res. Tel. No</label>
+                                       <input type="tel" class="form-control" placeholder="">
+                                    </div>
+                                 </div>
+                                 <div class="col-md-5">
+                                    <div class="form-group">
+                                       <label>Office Tel. No</label>
+                                       <input type="tel" class="form-control" placeholder="">
+                                    </div>
+                                 </div>
+                              </div>
+
+
+                              <div class="row">
+                                 <label class="col-md-2 control-label" for="event_date">Arrival Date:</label>
+                                 <div class="col-md-3">
+                                    <input name="event_end_date" type="date" placeholder="" class="form-control" required="">
+                                 </div>
+                                 <label class="col-md-2 control-label" for="event_date">Departure Date:</label>
+                                 <div class="col-md-3">
+                                    <input name="event_end_date" type="date" placeholder="" class="form-control" required="">
+                                 </div>
+                              </div>
+
+
+                              <div class="row">
+                                 <div class="col-md-5">
+                                    <label for="sel1">Facility:</label>
+                                    <select class="form-control" id="sel1">
+                                       <option>Cottage</option>
+                                       <option>Guesthouse</option>
+                                       <option>Dormitory</option>
+                                       <option>Conference Hall</option>
+                                       <option>Dormitory</option>
+                                       <option>Others</option>
+                                    </select>
+                                 </div>
+
+                                 <div class="col-md-5">
+                                    <label for="sel1">Room No.:</label>
+                                    <select class="form-control" id="sel1">
+                                       <option>201</option>
+                                       <option>202</option>
+                                       <option>203</option>
+                                       <option>204</option>
+                                       <option>205</option>
+                                       <option>206</option>
+                                    </select>
+                                 </div>
+                              </div>
+
+                              <div class="row">
+                                 <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>No. of Person</label>
+                                       <input type="number" class="form-control" placeholder="">
+                                    </div>
+                                 </div>
+                                 <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>Adult(s)</label>
+                                       <input type="number" class="form-control" placeholder="">
+                                    </div>
+                                 </div>
+                                 <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>Children</label>
+                                       <input type="number" class="form-control" placeholder="">
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="row">
+                                 <div class="col-md-7">
+                                    <div class="form-group">
+                                       <label>Person/s to be notified in case of Emergency.</label>
+                                       <input type="text" class="form-control" placeholder="Name" value="">
+                                    </div>
+                                 </div>
+                                 <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label>Input Contact No.</label>
+                                       <input type="tel" class="form-control" placeholder="Contact No." value="">
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="row">
+                                 <div class="col-md-7">
+                                    <div class="form-group">
+                                       <label>Category</label>
+                                       <br>
+                                       <label class="checkbox-inline">
+                                          <input type="checkbox" value=""> DepEd</label>
+                                       <label class="checkbox-inline">
+                                          <input type="checkbox" value=""> Non-DepEd</label>
+                                       <label class="checkbox-inline">
+                                          <input type="checkbox" value=""> Private</label>
+                                       <label class="checkbox-inline">
+                                          <input type="checkbox" value=""> Others</label>
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="row">
+                                 <div class="col-md-8">
+                                    <div class="form-group">
+                                       <label>Identification Card Presented</label>
+                                       <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                 </div>
+                              </div>
+                              <a button type="submit" class="btn btn-info btn-fill pull-right" href="confirmation.html">Register</a>
+                              <div class="clearfix"></div>
+                               <hr>
+                               <div class="row">
+                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                       <label>Remarks</label>
+                                       <textarea rows="2" class="form-control" placeholder="Additional Remarks"></textarea>
+                                    </div>
+                                 </div>
+                              </div>
+                               <a button type="submit" class="btn btn-info btn-fill pull-right" href="confirmation.html">Add Remarks</a>
+                              <div class="clearfix"></div>
+
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+                  <!--end of Form container-->
+                  <div class="col-md-4">
+                     <div class="card">
+                        <div class="header">
+                           <h4 class="title">Check Room Availability</h4>
+                           <p class="category">Use the filter to check room availability.</p>
+                        </div>
+                        <div class="content">
+                           <div class="row">
+                              <label class="col-md-4 control-label" for="sel1">Facility:</label>
+                              <div class="col-md-7">
+                                 <select class="form-control" id="sel1">
+                                    <option>Cottage</option>
+                                    <option>Guesthouse</option>
+                                    <option>Dormitory</option>
+                                    <option>Conference Hall</option>
+                                    <option>Dormitory</option>
+                                    <option>Others</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <label class="col-md-4 control-label" for="event_date">Arrival Date:</label>
+                              <div class="col-md-7">
+                                 <input name="event_end_date" type="date" placeholder="" class="form-control" required="">
+                              </div>
+                           </div>
+                           <div class="row">
+                              <label class="col-md-4 control-label" for="event_date">Departure Date:</label>
+                              <div class="col-md-7">
+                                 <input name="event_end_date" type="date" placeholder="" class="form-control" required="">
+                              </div>
+                           </div>
+                           <hr>
+                           <button type="submit" class="btn btn-info btn-fill pull-right">Filter</button>
+                           <div class="clearfix"></div>
+
+                        </div>
+                     </div>
+                  </div>
+                  <!--end of filter container-->
+               </div>
+            </div>
+         </div>
+
+      </div>
+   </div>
+
+
+</body>
+<!--   Core JS Files   -->
+<script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="assets/js/bootstrap-checkbox-radio-switch.js"></script>
+<!--  Charts Plugin -->
+<script src="assets/js/chartist.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="assets/js/bootstrap-notify.js"></script>
+<!-- Light Bootstrap Table Core javascript and methods-->
+<script src="assets/js/light-bootstrap-dashboard.js"></script>
+
+</html>
