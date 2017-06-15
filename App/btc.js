@@ -239,3 +239,71 @@ app.post('/login', function(req, res) {
     connection.end(function() {});
 
 });
+
+//Reservation's List
+app.get('/reservationsList', function(req, res) {
+    var connection = mysql.createConnection({
+        host: currentHost, user: dbuser,
+        password: dbpass,
+        database: currentDB,
+    });
+    connection.connect();
+    connection.query(`select * from reservations 
+        order by arrival asc`, function(err, rows, fields) {
+            
+                if(rows.length != 0) {
+                   for(i = 0; i < rows.length; i++){
+
+                          res.write(`
+                                    <tr>
+                                        <td>`+new String(rows[i].arrival).slice(0, 15)+`</td>
+                                        <td>`+new String(rows[i].departure).slice(0, 15)+`</td>
+                                        <td>`+rows[i].name+`</td>
+                                        <td>`+rows[i].activity+`</td>
+                                        <td>`+rows[i].status+`</td>
+                                        <td>`+rows[i].contact_no+`</td>
+                                        <td><a button type="submit" class="btn btn-info btn-sm btn-fill pull-left" href="/details?id=`+rows[i].id+`">View Details</a>
+                                       </td>
+                                     </tr>
+                            `);
+                           
+                      }
+                } 
+           res.end();
+        });
+    connection.end();
+});
+
+//Guest Records
+app.get('/guestrecords', function(req, res) {
+    var connection = mysql.createConnection({
+        host: currentHost, user: dbuser,
+        password: dbpass,
+        database: currentDB,
+    });
+    connection.connect();
+    connection.query(`select * from reservations 
+        order by arrival asc`, function(err, rows, fields) {
+            var item = 0;
+                if(rows.length != 0) {
+                   for(i = 0; i < rows.length; i++){
+
+                                            res.write(`
+                                    <tr>
+                                        <td>`+rows[i].id+`</td>
+                                        <td>`+rows[i].name+`</td>
+                                        <td>`+rows[i].contact_no+`</td>
+                                        <td>`+rows[i].guest_type+`</td>
+                                        <td>`+new String(rows[i].arrival).slice(0, 15)+`</td>
+                                        <td>`+new String(rows[i].departure).slice(0, 15)+`</td>
+                                        <td>`+rows[i].no_persons+`</td>
+                                        <td>`+rows[i].activity+`</td>
+                                        <td>`+rows[i].status+`</td>
+                                     </tr>
+                            `);
+                          }
+                    }
+           res.end();
+        });
+    connection.end();
+});
