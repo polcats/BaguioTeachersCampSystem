@@ -20,7 +20,7 @@
 <body>
 
    <!--Navigation-->
-   <div class="wrapper">
+    <div class="wrapper">
       <div class="sidebar" data-color="green" ; data-image="assets/img/sidebar-5.jpg">
 
          <div class="sidebar-wrapper">
@@ -31,10 +31,16 @@
             </div>
 
             <ul class="nav">
-               <li class="active">
+               <li class="">
                   <a href="dashboard.html">
                      <i class="pe-7s-graph"></i>
                      <p>Dashboard</p>
+                  </a>
+               </li>
+                <li>
+                  <a href="availability.html">
+                     <i class="pe-7s-bookmarks"></i>
+                     <p>Available Facilities</p>
                   </a>
                </li>
                <li>
@@ -44,9 +50,15 @@
                   </a>
                </li>
                <li>
-                  <a href="validation.html">
-                     <i class="pe-7s-id"></i>
-                     <p>Validate Forms</p>
+                  <a href="newReservation.html">
+                     <i class="pe-7s-news-paper"></i>
+                     <p>New Reservation</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="reviewReg.html">
+                     <i class="pe-7s-note"></i>
+                     <p>Review Registrations</p>
                   </a>
                </li>
                <li>
@@ -62,7 +74,7 @@
                   </a>
                </li>
                <li>
-                  <a href="/home?action=logout">
+                  <a href="index.html">
                      <i class="pe-7s-close"></i>
                      <p>Log Out</p>
                   </a>
@@ -178,6 +190,12 @@ $(document).ready(function() {
     $.get("/dailyarrivals",{},function(data){
         if(data)  {
             $("#daily-content").html(data);
+        }
+    });
+
+    $.get("/reservationsList",{},function(data){
+        if(data)  {
+            $("#reservation").html(data);
         }
     });
 
