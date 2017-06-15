@@ -120,7 +120,7 @@ CREATE TABLE `dorm_capacity` (
   `status` enum('available','not_available') NOT NULL DEFAULT 'available',
   PRIMARY KEY (`id`),
   KEY `dorm_id_idx` (`dorm_id`),
-  CONSTRAINT `dorm_id` FOREIGN KEY (`dorm_id`) REFERENCES `dormitories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `dorm_id` FOREIGN KEY (`dorm_id`) REFERENCES `dormitories` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=169 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -171,13 +171,13 @@ DROP TABLE IF EXISTS `employees`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `employees` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,39 +186,8 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` VALUES (1,'admin','admin','admin','admin');
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `facilities`
---
-
-DROP TABLE IF EXISTS `facilities`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `facilities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `type` enum('conference_halls','cottages_guesthouses','dining_kitchen','dormitories','other_services') NOT NULL,
-  `status` enum('available','not_available') NOT NULL DEFAULT 'available',
-  `deped` int(11) DEFAULT NULL,
-  `govt` int(11) DEFAULT NULL,
-  `private` int(11) DEFAULT NULL,
-  `liveindeped` int(11) DEFAULT NULL,
-  `liveoutdeped` int(11) DEFAULT NULL,
-  `liveinnondeped` int(11) DEFAULT NULL,
-  `liveoutnondeped` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `facilities`
---
-
-LOCK TABLES `facilities` WRITE;
-/*!40000 ALTER TABLE `facilities` DISABLE KEYS */;
-/*!40000 ALTER TABLE `facilities` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -330,6 +299,8 @@ CREATE TABLE `reservations` (
   `contact_no` varchar(45) NOT NULL,
   `activity` varchar(45) DEFAULT NULL,
   `status` enum('confirmed','unconfirmed','request') NOT NULL DEFAULT 'request',
+  `confirmation_date` date NOT NULL,
+  `cancellation_date` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -340,7 +311,7 @@ CREATE TABLE `reservations` (
 
 LOCK TABLES `reservations` WRITE;
 /*!40000 ALTER TABLE `reservations` DISABLE KEYS */;
-INSERT INTO `reservations` VALUES (1,'John Doe','deped','organization','2017-06-14','2017-06-16',20,'09179322197','seminar','request'),(2,'Jane Doe','govt','individual','2017-06-18','2017-06-20',5,'09302997498','workshop','confirmed'),(3,'Juan DelaCruz','private','individual','2017-06-22','2017-06-29',1,'09111223456','vacation','unconfirmed'),(4,'Dominik Deleon','deped','individual','2017-06-29','2017-07-03',5,'09124758392','jogging','request'),(5,'University of Makati','deped','organization','2017-12-01','2017-12-25',150,'09654365721','seminar','confirmed'),(6,'Taylor Shaw','private','individual','2017-08-15','2017-08-17',2,'09752567549','vacation','request'),(7,'Cebu Pacific','private','organization','2018-01-20','2018-01-30',30,'09993565432','seminar','confirmed'),(8,'Dbp','govt','organization','2017-07-03','2017-07-13',20,'09156433464','seminar','confirmed'),(9,'John Felizardo','private','individual','2017-07-13','2017-07-15',1,'09543462342','vacation','request'),(10,'University of the Philippines Diliman','deped','organization','2017-07-15','2017-07-25',100,'09765753345','seminar','unconfirmed');
+INSERT INTO `reservations` VALUES (1,'John Doe','deped','organization','2017-06-14','2017-06-16',20,'09179322197','seminar','request','0000-00-00','0000-00-00'),(2,'Jane Doe','govt','individual','2017-06-18','2017-06-20',5,'09302997498','workshop','confirmed','0000-00-00','0000-00-00'),(3,'Juan DelaCruz','private','individual','2017-06-22','2017-06-29',1,'09111223456','vacation','unconfirmed','0000-00-00','0000-00-00'),(4,'Dominik Deleon','deped','individual','2017-06-29','2017-07-03',5,'09124758392','jogging','request','0000-00-00','0000-00-00'),(5,'University of Makati','deped','organization','2017-12-01','2017-12-25',150,'09654365721','seminar','confirmed','0000-00-00','0000-00-00'),(6,'Taylor Shaw','private','individual','2017-08-15','2017-08-17',2,'09752567549','vacation','request','0000-00-00','0000-00-00'),(7,'Cebu Pacific','private','organization','2018-01-20','2018-01-30',30,'09993565432','seminar','confirmed','0000-00-00','0000-00-00'),(8,'Dbp','govt','organization','2017-07-03','2017-07-13',20,'09156433464','seminar','confirmed','0000-00-00','0000-00-00'),(9,'John Felizardo','private','individual','2017-07-13','2017-07-15',1,'09543462342','vacation','request','0000-00-00','0000-00-00'),(10,'University of the Philippines Diliman','deped','organization','2017-07-15','2017-07-25',100,'09765753345','seminar','unconfirmed','0000-00-00','0000-00-00');
 /*!40000 ALTER TABLE `reservations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -353,4 +324,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-14 14:55:25
+-- Dump completed on 2017-06-15  8:37:40
