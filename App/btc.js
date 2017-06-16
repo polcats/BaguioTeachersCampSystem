@@ -274,6 +274,42 @@ app.get('/reservationsList', function(req, res) {
     connection.end();
 });
 
+//details
+app.get('/reservationsList', function(req, res) {
+    var connection = mysql.createConnection({
+        host: currentHost, user: dbuser,
+        password: dbpass,
+        database: currentDB,
+    });
+    connection.connect();
+    connection.query(`select * from reservations 
+        order by arrival asc`, function(err, rows, fields) {
+            
+                if(rows.length != 0) {
+                   for(i = 0; i < rows.length; i++){
+
+                          res.write(`
+                                    <tr>
+                                        <td>`+new String(rows[i].arrival).slice(0, 15)+`</td>
+                                        <td>`+new String(rows[i].departure).slice(0, 15)+`</td>
+                                        <td>`+rows[i].name+`</td>
+                                        <td>`+rows[i].activity+`</td>
+                                        <td>`+rows[i].status+`</td>
+                                        <td>`+rows[i].contact_no+`</td>
+                                        <td><a button type="submit" class="btn btn-info btn-sm btn-fill pull-left" href="/details?id=`+rows[i].id+`">View Details</a>
+                                       </td>
+                                     </tr>
+                            `);
+                           
+                      }
+                } 
+           res.end();
+        });
+    connection.end();
+});
+
+
+
 //Guest Records
 app.get('/guestrecords', function(req, res) {
     var connection = mysql.createConnection({
@@ -306,4 +342,39 @@ app.get('/guestrecords', function(req, res) {
            res.end();
         });
     connection.end();
+});
+
+
+
+app.get('/newReservation',function(req,res){
+    sess = req.session;
+
+    var url = require("url");
+    var params = url.parse(req.url, true).query;
+    var action = params.action;
+
+   // if(!sess.username && !params.action) { // not logged in
+       // res.render("reservation/newReservation.html");
+   // } else if(!sess.username){
+
+        var name = params.name;
+        var contact_no = params.contact_no;
+        var activity = params.activity;
+        var guest_type = params.guest_type;
+        var category = params.category;
+        var arrival = params.arrival;
+        var departure = params.departure;
+        var no_persons = params.no_persons;
+        var facility = params.facility
+        var room = params.room;
+        var remarks=params.remarks;
+        var post = {name, contact_no, activity,guest_type, category, arrival,departure,no_persons, remarks};
+
+        submitToDB(post, currentDB, "reservations");
+
+        res.render("confirmation.html");
+    //} else if(sess.username){
+        //res.redirect("/dashboard");
+    //}
+
 });
