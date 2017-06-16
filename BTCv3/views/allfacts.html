@@ -1,0 +1,56 @@
+<script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var _arrival = "";
+    var _departure = "";
+</script>
+
+
+<h1>Facilities to be used:</h1>
+
+<h4>Conference Halls</h4>
+<div id="halls_wrap"> </div> <br><br>
+
+<h4>Cottages</h4>
+<div id="cottages_wrap"> </div> <br><br>
+
+<h4>Guesthouses</h4>
+<div id="guesthouses_wrap"> </div> <br><br>
+
+<h4>Dormitories</h4>
+<div id="dormitories_wrap"> </div> <br><br>
+
+<h4>Dining Area and Kitchen</h4>
+<div id="dinings_wrap"> </div> <br><br>
+
+<h4>Other Rentables</h4>
+<div id="rentables_wrap"> </div> <br><br>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+    $.get("/reservehall?arrival="+_arrival+"&departure="+_departure,{},function(data){
+      if(data)  { $("#halls_wrap").html(data); }
+    });
+
+    $.get("/reservecottage="+_arrival+"&departure="+_departure,{},function(data){
+      if(data)  { $("#cottages_wrap").html(data); }
+    });
+
+    $.get("/reserveguesthouse="+_arrival+"&departure="+_departure,{},function(data){
+      if(data)  { $("#guesthouses_wrap").html(data); }
+    });
+
+    $.get("/reservedormitory="+_arrival+"&departure="+_departure,{},function(data){
+      if(data)  { $("#dormitories_wrap").html(data); }
+    });
+
+    $.get("/reservedining="+_arrival+"&departure="+_departure,{},function(data){
+      if(data)  { $("#dinings_wrap").html(data); }
+    });
+
+    $.get("/reserverentables="+_arrival+"&departure="+_departure,{},function(data){
+      if(data)  { $("#rentables_wrap").html(data); }
+    });
+
+});
+</script>
