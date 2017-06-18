@@ -75,7 +75,6 @@ app.get('/', function(req, res) {
 
 });
 
-
 // login Submission
 app.post('/login', function(req, res) {
 
@@ -342,6 +341,42 @@ app.get('/newReservation',function(req,res){
 
 });
 
+app.get('/newGuest',function(req,res){
+    sess = req.session;
+
+    var url = require("url");
+    var params = url.parse(req.url, true).query;
+    var action = params.action;
+	
+	
+    //if(!sess.username && !params.action) { // not logged in
+    //    res.render("guest/newGuest.html");
+    //} else if(!sess.username){
+	
+		var reg_no = params.reg_no;
+        var name = params.name;
+        var res_tel_no = params.res_tel_no;
+        var address = params.address;
+        var office_tel_no = params.office_tel_no;
+        var arrival_date = params.arrival_date;
+        var departure_date = params.departure_date;
+        var no_persons = params.no_persons;
+		var adults = params.adults;
+		var children = params.children;
+		var emergency_person= params.emergency_person;
+		var emergency_no= params.emergency_no;
+		var client_type = params. client_type;
+        var id_number=params.id_number;
+        var post = {reg_no,name, res_tel_no, address,office_tel_no, arrival_date,departure_date,no_persons,adults,children,emergency_person, emergency_no, client_type, id_number}
+
+        submitToDB(post, currentDB, "registration");
+
+        res.render("registerGuest.html");
+    //} else if(sess.username){
+    //   res.redirect("/home");
+    //}
+
+});
 
 
 app.get('/availablehalls', function(req, res) {
@@ -417,17 +452,16 @@ app.get('/reservehall', function(req, res) {
     connection.query(que, function(err, rows, fields) {           
                 if(rows.length != 0) {
                    res.write(rows.length + " halls are available during the schedule you provided.");
-                   res.write(`<form> <select style="width: 200px;" id="hall" class="form-control">`);
+                   res.write(`<div class="content"><div class="row"><form><div class="col-md-4"><select style="width: 300px;" id="hall" class="form-control">`);
                    res.write(`<option value="def">Select a Hall</option>`);
                    for(i = 0; i < rows.length; i++){
 
                         res.write(`<option value="`+rows[i].id+`">`+rows[i].name+`</option>`);
                     }
-                    res.write(`</select>`);
+                    res.write(`</select></div>`);
 
-                    res.write(` <br>
-                        <button type="button" onclick="HallList.add()" class="btn btn-info btn-fill pull-left">Add</button>
-                    </form>`);
+                    res.write(`<div class="col-md-2"><button type="button" onclick="HallList.add()" class="btn btn-info btn-fill pull-left">Add</button></div>
+                    </form></div></div>`);
                     
                 } else {
                     res.write(`No halls are available during this period of time.`);
@@ -468,17 +502,16 @@ app.get('/reservecottage', function(req, res) {
     connection.query(que, function(err, rows, fields) {
                 if(rows.length != 0) {
                    res.write(rows.length + " cottages are available during the schedule you provided.");                            
-                   res.write(`<form>
-                              <select style="width: 200px;" id="cottage" class="form-control">`);
+                   res.write(`<div class="content"><div class="row"><form><div class="col-md-4">
+                              <select style="width: 300px;" id="cottage" class="form-control">`);
                    res.write(`<option value="def">Select a Cottage</option>`);
                    for(i = 0; i < rows.length; i++){
 
                         res.write(`<option value="`+rows[i].id+`">Cottage `+rows[i].name+`</option>`);
                     }
-                    res.write(`</select>`);
-                    res.write(` <br>
-                        <button type="button" onclick="CottageList.add()" class="btn btn-info btn-fill pull-left">Add</button>
-                    </form>`);
+                    res.write(`</select></div>`);
+                    res.write(`<div class="col-md-2"><button type="button" onclick="CottageList.add()" class="btn btn-info btn-fill pull-left">Add</button></div>
+                    </form></div></div>`);
                     
                 } else {
                     res.write(`No cottages are available during this period of time.`);
@@ -519,17 +552,17 @@ app.get('/reserveguesthouse', function(req, res) {
     connection.query(que, function(err, rows, fields) {
                 if(rows.length != 0) {
                    res.write(rows.length + " guesthouses are available during the schedule you provided.");                            
-                   res.write(`<form>
-                              <select style="width: 200px;" id="guesthouse" class="form-control">`);
+                   res.write(`<div class="content"><div class="row"><form><div class="col-md-4">
+                              <select style="width: 300px;" id="guesthouse" class="form-control">`);
                    res.write(`<option value="def">Select a Guesthouse</option>`);
                    for(i = 0; i < rows.length; i++){
 
                         res.write(`<option value="`+rows[i].id+`">Guesthouse `+rows[i].name+`</option>`);
                     }
-                    res.write(`</select>`);
-                    res.write(` <br>
-                        <button type="button" onclick="GuestHouseList.add()" class="btn btn-info btn-fill pull-left">Add</button>
-                    </form>`);
+                    res.write(`</select></div>`);
+                    res.write(`<div class="col-md-2">
+                        <button type="button" onclick="GuestHouseList.add()" class="btn btn-info btn-fill pull-left">Add</button></div>
+                    </form></div></div>`);
                     
                 } else {
                     res.write(`No guesthouses are available during this period of time.`);
@@ -572,17 +605,16 @@ app.get('/reservedormitory', function(req, res) {
     connection.query(que, function(err, rows, fields) {
                 if(rows.length != 0) {
                    res.write(rows.length + " dormitories are available during the schedule you provided.");                            
-                   res.write(`<form>
-                              <select style="width: 200px;" id="dormitory" class="form-control">`);
+                   res.write(`<div class="content"><div class="row"><form><div class="col-md-4">
+                              <select style="width: 300px;" id="dormitory" class="form-control">`);
                    res.write(`<option value="def">Select a Dormitory</option>`);
                    for(i = 0; i < rows.length; i++){
 
                         res.write(`<option value="`+rows[i].id+`">Dormitory `+rows[i].name+`</option>`);
                     }
-                    res.write(`</select>`);
-                    res.write(` <br>
-                        <button type="button" onclick="DormitoryList.add()" class="btn btn-info btn-fill pull-left">Add</button>
-                    </form>`);
+                    res.write(`</select></div>`);
+                    res.write(` <div class="col-md-2">
+                        <button type="button" onclick="DormitoryList.add()" class="btn btn-info btn-fill pull-left">Add</button></div></form></div></div>`);
                     
                 } else {
                     res.write(`No guesthouses are available during this period of time.`);
@@ -626,17 +658,16 @@ app.get('/reservedining', function(req, res) {
     connection.query(que, function(err, rows, fields) {
                 if(rows.length != 0) {
                    res.write(rows.length + " facilities are available during the schedule you provided.");                            
-                   res.write(`<form>
-                              <select style="width: 200px;" id="dining_kitchen" class="form-control">`);
+                   res.write(`<div class="content"><div class="row"><form><div class="col-md-4">
+                              <select style="width: 300px;" id="dining_kitchen" class="form-control">`);
                    res.write(`<option value="def">Select an Item</option>`);
                    for(i = 0; i < rows.length; i++){
 
                         res.write(`<option value="`+rows[i].id+`">`+rows[i].name+`</option>`);
                     }
-                    res.write(`</select>`);
-                    res.write(`<br>
-                        <button type="button" onclick="DiningsList.add()" class="btn btn-info btn-fill pull-left">Add</button>
-                    </form>`);
+                    res.write(`</select></div>`);
+                    res.write(`<div class="col-md-2">
+                        <button type="button" onclick="DiningsList.add()" class="btn btn-info btn-fill pull-left">Add</button></div></form></div></div>`);
                     
                 } else {
                     res.write(`No rentable facilities are available during this period of time.`);
@@ -678,17 +709,16 @@ app.get('/reserverentables', function(req, res) {
     connection.query(que, function(err, rows, fields) {                         
                 if(rows.length != 0) {
                    res.write(rows.length + " rentable facilities are available during the schedule you provided.");   
-                   res.write(`<form>
-                              <select style="width: 200px;" id="rentable" class="form-control">`);
+                   res.write(`<div class="content"><div class="row"><form><div class="col-md-4"><form>
+                              <select style="width: 300px;" id="rentable" class="form-control">`);
                    res.write(`<option value="def">Select an Item</option>`);
                    for(i = 0; i < rows.length; i++){
 
                         res.write(`<option value="`+rows[i].id+`">`+rows[i].name+`</option>`);
                     }
-                    res.write(`</select>`);
-                    res.write(`<br>
-                        <button type="button" onclick="RentableList.add()" class="btn btn-info btn-fill pull-left">Add</button>
-                    </form>`);
+                    res.write(`</select></div>`);
+                    res.write(`<div clas="col-md-3">
+                        <button type="button" onclick="RentableList.add()" class="btn btn-info btn-fill pull-left">Add</button></div></form></div></div>`);
                     
                 } else {
                     res.write(`No rentable facilities are available during this period of time.`);
@@ -729,12 +759,10 @@ app.get('/allreserves', function(req, res) {
             var _arrival = "`+arriv+`";
             var _departure = "`+dep+`";
         </script>
-
-
-        <h1>Facilities for Reservation</h1>
+           <h2 class="title">Facilities for Reservation</h2>
+            <p>Note: Facilities that appear here are the only ones that are available during the provided period of time.</p>
         <h2>`+arriv+` until `+dep+`</h2>
-        <p>Note: Facilities that appear here are the only ones that are available during the provided period of time.</p>
-        <br>
+       
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#tab1">Conference Halls</a></li>
           <li><a data-toggle="tab" href="#tab2">Cottages</a></li>
@@ -771,25 +799,25 @@ app.get('/allreserves', function(req, res) {
 
         </div>
 
-        <br><br>
-
-        <table id="facilities_wrap" style="width: 600px; height: 200px;margin: 30 auto; padding: 10px; ">
+       
+		<div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="card">
+        <table id="facilities_wrap" class="table table-hover table-striped">
         <thead>
             <tr>
-                <th>Type</th>
-                <th>Name</th>
-                <th>Remove</th>
+                <td>Type</td>
+                <td>Name</td>
+                <td>Remove</td>
             </tr>
         </thead>
         <tbody id="facilities">
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+
         </tbody>
         </table>
-
+</div></div></div></div></div>
         <script type="text/javascript">
         $(document).ready(function() {
 
@@ -1013,22 +1041,22 @@ res.write(`
                             `);
                           }
 
-res.write(`
+										res.write(`
                                              </tbody>
                                           </table>
                      
                         <div class="row">
                         <hr>
-                     <div class="col-sm-8">
+                     <div class="col-sm-9">
                               
                      </div>
-                     <div class="col-sm-2">
+                     <div class="col-md-1">
                              
-                                            <a button="" type="submit" class="btn btn-info btn-sm btn-fill pull-left" href="/editDetails?id=`+rows[0].id+`">Edit</a>
+                      <a button="" type="submit" class="btn btn-info btn-md btn-fill" href="/editDetails?id=`+rows[0].id+`">Edit</a>
                               
                      </div>
-                           <div class="col-sm-1">
-                              <button type="submit" class="btn btn-info btn-fill">Confirm</button>
+                           <div class="col-sm-2">
+                              <a button="" type="submit" class="btn btn-info btn-md btn-fill pull-left" href="/confirmed?">Confirm</a>
                               
                      </div>
                      </div>
