@@ -1,2 +1,2 @@
-# btc
-Baguio Teachers Camp Project - Web Based Reservation/Registration System
+# BaguioTeachersCampSystem
+A Web Based Reservation and Registration System
