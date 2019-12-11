@@ -1,0 +1,50 @@
+html, body {
+	margin: 0px !important;
+	padding: 0px !important;
+   -webkit-print-color-adjust:exact;
+}
+
+* {
+	font-family: Arial;
+}
+
+
+h1, h3 {
+	margin: 0 auto;
+	text-align: center;
+}
+table {
+	width: 90% !important;
+	margin: 0 auto;
+}
+
+td {
+	height: 10px !important;
+	padding: 0px 5px !important;
+	margin: 0px !important;
+	line-height: 14px !important;
+	border: 1px solid #777;
+	text-align: center;
+}
+td:first-child {
+	text-align: left;
+}
+td.disabled {
+	background: #bbb;
+	font-style: italic; 
+   -webkit-print-color-adjust:exact;
+}
+
+td._bname,
+td._name, 
+td._arriv, 
+td._dep {
+	font-size: 8px;
+}
+
+th {
+	font-size: 10px;
+	padding: 0px 5px !important;
+	margin: 0px !important;
+	text-align: center;
+}

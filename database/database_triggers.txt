@@ -1,0 +1,53 @@
+//registrations trigger
+
+IF NEW.status = 'check-in'
+THEN UPDATE registered_facilities 
+	SET status = 'ongoing'
+WHERE registered_facilities.registration_id =  NEW.id;
+
+ELSEIF NEW.status = 'check-out' or NEW.status = 'cancelled'
+
+THEN UPDATE registered_facilities 
+	SET status = 'done'
+WHERE registered_facilities.registration_id =  NEW.id;
+
+END IF
+
+-----------------------
+
+IF NEW.status = 'ongoing' and NEW.fac_type = 'conference_halls'
+THEN UPDATE conference_halls 
+	SET vacant = 'false'
+	WHERE conference_halls.id =  NEW.fac_id;
+ELSEIF NEW.status = 'ongoing' and NEW.fac_type = 'cottages_guesthouses'
+THEN UPDATE cottages_guesthouses 
+	SET vacant = 'false'
+	WHERE cottages_guesthouses.id =  NEW.fac_id;
+ELSEIF NEW.status = 'ongoing' and NEW.fac_type = 'dining_kitchen'
+THEN UPDATE dining_kitchen 
+	SET vacant = 'false'
+	WHERE dining_kitchen.id =  NEW.fac_id;
+ELSEIF NEW.status = 'ongoing' and NEW.fac_type = 'dorm_room'
+THEN UPDATE dorm_rooms 
+	SET vacant = 'false'
+	WHERE dorm_rooms.id =  NEW.fac_id;
+ELSEIF NEW.status = 'done' and NEW.fac_type = 'conference_halls'
+THEN UPDATE conference_halls 
+	SET vacant = 'true'
+	WHERE conference_halls.id =  NEW.fac_id;
+ELSEIF NEW.status = 'done' and NEW.fac_type = 'cottages_guesthouses'
+THEN UPDATE cottages_guesthouses 
+	SET vacant = 'true'
+	WHERE cottages_guesthouses.id =  NEW.fac_id;
+ELSEIF NEW.status = 'done' and NEW.fac_type = 'dining_kitchen'
+THEN UPDATE dining_kitchen 
+	SET vacant = 'true'
+	WHERE dining_kitchen.id =  NEW.fac_id;
+ELSEIF NEW.status = 'done' and NEW.fac_type = 'dorm_room'
+THEN UPDATE dorm_rooms 
+	SET vacant = 'true'
+	WHERE dorm_rooms.id =  NEW.fac_id;
+END IF
+
+
+

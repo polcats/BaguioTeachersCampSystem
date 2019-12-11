@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" type="image/png" href="/assets/img/logo.png">
+    <title>Baguio Teacher's Camp</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="viewport" content="width=device-width">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/animate.min.css" rel="stylesheet" />
+    <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet" />
+    <link href='assets/fonts/Roboto.ttf' rel='stylesheet' type='text/css'>
+    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function urlParam(name) {
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results == null) {
+                return null;
+            } else {
+                return decodeURI(results[1]) || 0;
+            }
+        }
+        var _id = urlParam("id");
+    </script>
+    <script type="text/javascript">
+        var d = document.createElement("script");
+        d.src = "/getdetails?id=" + _id;
+        document.getElementsByTagName("head")[0].appendChild(d);
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar" data-color="green" ;="" data-image="assets/img/sidebar-5.jpg">
+            <div class="sidebar-wrapper">
+
+            <ul class="nav">
+               <li>
+                  <a href="/home">
+                     <i class="pe-7s-home"></i>
+                     <p>Dashboard</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/viewemployees">
+                     <i class="pe-7s-user"></i>
+                     <p>Administration</p>
+                  </a>
+               </li>
+               <li><hr width="70%"></li>
+
+               <li>
+                  <a href="/newreservation">
+                     <i class="pe-7s-note"></i>
+                     <p>Create Reservation</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/reservations">
+                     <i class="pe-7s-photo-gallery"></i>
+                     <p>Reservations</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/newregistration">
+                     <i class="pe-7s-pen"></i>
+                     <p>Create Registration</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/guests">
+                     <i class="pe-7s-albums"></i>
+                     <p>Registrations</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/checkavailable">
+                     <i class="pe-7s-search"></i>
+                     <p>Check Facilities</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/tables_facilities">
+                     <i class="pe-7s-config"></i>
+                     <p>Facilities</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/home?action=logout">
+                     <i class="pe-7s-power"></i>
+                     <p>Log Out</p>
+                  </a>
+               </li>
+            </ul>
+
+
+            </div>
+            <div class="sidebar-background" style="background-image: url(assets/img/sidebar-5.jpg) "></div>
+        </div>
+        <div class="main-panel">
+            <nav class="navbar navbar-default navbar-fixed">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand">Reservation Details</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="separator hidden-lg hidden-md"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+
+                   
+                    <div class="card"><!-- Reservation -->
+                        <div class="header">
+                            <h4 class="title">Reservation Details <span id="_edit"></span></h4>
+                        </div>
+                        <div class="content">
+                           <div class="row">
+                                    <div class="col-md-6">
+                                          <div class="form-group">
+                                             <label for="name">Reservation Status</label>
+                                             <span class="form-control" id="_status"></span>
+                                          </div>
+                                    </div>
+                                    <div class="col-md-6" id="_change_status">
+                                       <label for="name">Change Status</label>
+                                       <div class="input-group">
+                                          <select class="form-control" id="_status_select">
+                                          </select>            
+                                           <span class="input-group-btn">
+                                               <button onclick="changeStatus()" class="btn btn-default" type="button" tabindex="-1">
+                                               <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                                               </button>
+                                           </span>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Name / Organization</label>
+                                        <span class="form-control" id="_name"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="form_affiliation">Affiliation</label>
+                                    <span class="form-control" id="_affi"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cp">Contact Person</label>
+                                        <span class="form-control" id="_cp"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <span class="form-control" id="_address"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="form_contact1">Contact No.</label>
+                                        <span class="form-control" id="_c1"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="form_contact2">Alternate Contact No.</label>
+                                        <span class="form-control"  id="_c2"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <span class="form-control" id="_email"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label for="category">Type</label>
+                                    <span class="form-control" id="_gtype"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="form_number">Total Participants</label>
+                                        <span class="form-control" id="_total"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="activity">Activity / Purpose</label>
+                                        <span class="form-control" id="_act"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="lodging">Lodging:</label>
+                                    <span class="form-control" id="_lodging"></span>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="arrival">Arrival Date:</label>
+                                    <span class="form-control"  id="_arrival"></span>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="departure">Departure Date:</label>
+                                    <span class="form-control" id="_dep"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Additional Notes</label>
+                                        <span class="form-control" id="_remarks"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="row"></div>
+                        </div>
+                    </div> <!-- Reservation Details End -->
+
+
+                            <div class="card" id="_facilities"> <!-- Facilities Requested Start -->
+                                <div class="header">
+                                    <h4 class="title">Facilities Requested <span id="_add"></span></h4>
+                                </div>
+                                <div class="content table-responsive table-full-width">
+
+                                 <table class="table table-hover table-striped">
+                                    <thead>
+                                       <tr>
+                                          <th>Type</th>
+                                          <th>Name</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody id="_facs_requested">
+                                    </tbody>
+                                 </table>
+
+
+                                </div><!-- content end -->
+                            </div><!-- Facilities Requested End -->
+
+                            <div class="card" id="_add_facilities" style="display: none;"> <!-- Facilities Requested Start -->
+
+                            </div><!-- Facilities Requested End -->
+
+                            <div class="card"> <!-- Entry Details Start -->
+                                <div class="header">
+                                    <h4 class="title">Entry Details</h4>
+                                </div>
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Date Created</label>
+                                                <span class="form-control" id="_dcreated"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Encoded By</label>
+                                                <span class="form-control" id="_encoder"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="_condata">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Date Confirmed</label>
+                                                <span class="form-control" id="_dconfirmed"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Confirmed By</label>
+                                                <span class="form-control" id="_confirmer"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="_candata">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Date Cancelled</label>
+                                                <span class="form-control" id="_dcancelled"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Cancelled By</label>
+                                                <span class="form-control" id="_canceler"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- content end -->
+                            </div><!-- Entry Details End -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap-checkbox-radio-switch.js"></script>
+    <script src="assets/js/chartist.min.js"></script>
+    <script src="assets/js/bootstrap-notify.js"></script>
+    <script src="assets/js/light-bootstrap-dashboard.js"></script>
+    <script type="text/javascript">
+    function confirmDelete(id, resid) {
+        var conf = confirm("You are about to delete this facility in this reservation. Continue?");
+        if(!conf) {
+            return false;
+        }
+        window.location.href = "/removefacility?id="+id+"&resid="+resid;
+    }
+    </script>
+    <script>
+    function addFaci(data) {
+        data = data.name+"&action=other";
+        $("#_facilities").hide();
+        $("#_add_facilities").show();
+        $.get(data, {}, function(data){
+          if(data) {
+             $("#_add_facilities").html(data);
+          } else {
+
+          }
+        });
+    }
+    function cancelAdding() {
+        var conf = confirm("You are about to cancel adding facilities. Continue?");
+        if(!conf) {
+            return false;
+        }
+        fac = fac_reserve;
+        $("#_facilities").show();
+        $("#_add_facilities").hide();
+    }
+    //
+    function saveAdded() {
+        var data2x = "/addfacilities?fac="+JSON.stringify(fac)+"&resid="+_id;
+        $.get(data2x, {}, function(data){
+          if(data == "done") {
+             alert("Facilities has been added.");
+             window.location.reload();
+          } else {
+            alert("Error adding new facilities.");
+          }
+        });
+    }
+    </script>
+</body>
+
+</html>

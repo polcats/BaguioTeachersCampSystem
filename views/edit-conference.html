@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8" />
+   <link rel="icon" type="image/png" href="assets/img/logo.png">
+
+   <title>Baguio Teacher's Camp</title>
+
+   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+   <meta name="viewport" content="width=device-width" />
+   <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+   <link href="assets/css/animate.min.css" rel="stylesheet" />
+   <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet" />
+   <link href='assets/fonts/Roboto.ttf' rel='stylesheet' type='text/css'>
+   <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        function urlParam(name) {
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results == null) {
+                return null;
+            } else {
+                return decodeURI(results[1]) || 0;
+            }
+        }
+        var _id = urlParam("id");
+        var _type = urlParam("type");
+
+    </script>
+    <script type="text/javascript">
+        var d = document.createElement("script");
+        d.src = "/getfacilitydetails?id=" + _id + "&type=" + _type;
+        document.getElementsByTagName("head")[0].appendChild(d);
+    </script>
+
+</head>
+
+<body>
+
+   <!--Navigation-->
+   <div class="wrapper">
+      <div class="sidebar" data-color="green" ; data-image="assets/img/sidebar-5.jpg">
+
+         <div class="sidebar-wrapper">            <ul class="nav">
+               <li>
+                  <a href="/home">
+                     <i class="pe-7s-home"></i>
+                     <p>Dashboard</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/viewemployees">
+                     <i class="pe-7s-user"></i>
+                     <p>Administration</p>
+                  </a>
+               </li>
+               <li><hr width="70%"></li>
+
+               <li>
+                  <a href="/newreservation">
+                     <i class="pe-7s-note"></i>
+                     <p>Create Reservation</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/reservations">
+                     <i class="pe-7s-photo-gallery"></i>
+                     <p>Reservations</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/newregistration">
+                     <i class="pe-7s-pen"></i>
+                     <p>Create Registration</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/guests">
+                     <i class="pe-7s-albums"></i>
+                     <p>Registrations</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/checkavailable">
+                     <i class="pe-7s-search"></i>
+                     <p>Check Facilities</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/tables_facilities">
+                     <i class="pe-7s-config"></i>
+                     <p>Facilities</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/home?action=logout">
+                     <i class="pe-7s-power"></i>
+                     <p>Log Out</p>
+                  </a>
+               </li>
+            </ul>
+
+            
+         </div>
+      </div>
+
+      <div class="main-panel">
+         <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+               <div class="navbar-header">
+                  <a class="navbar-brand" href="#">Edit Details</a>
+               </div>
+               <div class="collapse navbar-collapse">
+                  <ul class="nav navbar-nav navbar-left">
+                     <li class="separator hidden-lg hidden-md"></li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+
+
+         <div class="content">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="card">
+                        <div class="header">
+                           <h4 class="title">Details</h4>
+                        </div>
+                        <div class="content">
+                           <form>
+                              <div class="row">
+                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                       <label>Hall Name:</label>
+                                       <input type="text" id="_name" class="form-control" placeholder="">
+                                    </div>
+                                 </div>
+							   </div>
+								<div class="row">
+								<div class="col-md-6">
+                                    <label for="sel1">Status:</label>
+                                    <select class="form-control" id="_status">
+                                       <option value="def">Select</option>
+                                       <option value="available">Available</option>
+                                       <option value="not_available">Unavailable</option>
+                                    </select>
+                                 </div>	
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label>Capacity</label>
+                                       <input type="number" id="_capacity" onblur="checkval(this);" class="form-control" placeholder="" min="1">
+                                    </div>
+								</div>
+							   </div>
+                              
+
+                              <div class="row">
+                                 <div class="col-md-3">
+                                    <div class="form-group">
+                                       <label>Dep-Ed (Live-in)</label>
+                                       <input type="number" id="_in_deped" onblur="checkval(this);" class="form-control" placeholder="" min="100">
+                                    </div>
+                                 </div>
+                                 <div class="col-md-3">
+                                    <div class="form-group">
+                                       <label>Dep-Ed (Live-Out)</label>
+                                       <input type="number" id="_out_deped" onblur="checkval(this);" class="form-control" placeholder="" min="100">
+                                    </div>
+                                 </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                       <label b>Non-DepEd (Live-in)</label>
+                                       <input type="number" id="_in_nondeped" onblur="checkval(this);" class="form-control" placeholder="" min="100">
+                                    </div>
+                                 </div>
+                                 <div class="col-md-3">
+                                    <div class="form-group">
+                                       <label>Non-DepEd (Live-Out)</label>
+                                       <input type="number" id="_out_nondeped" onblur="checkval(this);" class="form-control" placeholder="" min="100">
+                                    </div>
+                                 </div>
+                                </div>
+                               <div class="row">
+                              <div class="col-md-10">
+                               <a class="btn btn-danger btn-fill pull-left" onclick="cancelEdit();">Cancel</a>
+                                 </div>
+								<div class="col-md-2">
+                                  <a button type="submit" class="btn btn-info btn-fill pull-right" onclick="checkForm();">Save</a>
+                                 </div>
+                              <div class="clearfix"></div>
+							   </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+                  <!--end of Form container-->
+               </div>
+            </div>
+         </div>
+
+      </div>
+   </div>
+
+
+</body>
+<!--   Core JS Files   -->
+<script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="assets/js/bootstrap-checkbox-radio-switch.js"></script>
+<!--  Charts Plugin -->
+<script src="assets/js/chartist.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="assets/js/bootstrap-notify.js"></script>
+<!-- Light Bootstrap Table Core javascript and methods-->
+<script src="assets/js/light-bootstrap-dashboard.js"></script>
+
+<script> 
+function checkval(x) {
+  if(x.value == "" || x.value < 0) {
+      x.value = 0;
+      return false;
+  }
+}
+var details = {};
+function checkForm() {
+   var name = $("#_name");
+   var status = $("#_status");
+   var in_deped = $("#_in_deped");
+   var in_nondeped = $("#_in_nondeped");
+   var out_deped = $("#_out_deped");
+   var out_nondeped = $("#_out_nondeped");
+   var capacity = $("#_capacity");
+
+   
+
+   if(name.val().length == 0) {
+      alert("Please enter a name.");
+      name.focus();
+      return false;
+   }
+
+   if(status.val() == "def") {
+      alert("Please choose a status.");
+      status.focus();
+      return false;
+   }
+
+   if(capacity.val() == 0) {
+      alert("Please enter capacity.");
+      capacity.focus();
+      return false;
+   }
+
+   if(in_deped.val() == 0) {
+      alert("Please enter price for DepEd(Live in).");
+      in_deped.focus();
+      return false;
+   }
+
+   if(in_nondeped.val() == 0) {
+      alert("Please enter price for Non-DepEd(Live in).");
+      in_nondeped.focus();
+      return false;
+   }
+
+   if(out_deped.val() == 0) {
+      alert("Please enter price for DepEd(Live Out).");
+      out_deped.focus();
+      return false;
+   }
+
+   if(out_nondeped.val() == 0) {
+      alert("Please enter price for Non-DepEd(Live Out).");
+      out_nondeped.focus();
+      return false;
+   }
+
+   
+   details.name = name.val();
+   details.capacity = capacity.val();
+   details.status = status.val();
+   details.in_deped = in_deped.val();
+   details.in_nondeped = in_nondeped.val();
+   details.out_deped = out_deped.val();
+   details.out_nondeped = out_nondeped.val();
+   saveData();
+}
+
+function saveData() {
+  var conf = confirm("Are you sure you want to save the changes?");
+
+  if(!conf) {
+    return false;
+  } 
+
+  var data2x = '/updatefacilitydetails?type=' +_type+'&id=' +_id+'&details='+ JSON.stringify(details);
+  window.location.href= data2x;
+}
+	
+function cancelEdit() {
+   var conf = confirm("Are you sure you want to cancel?");
+   if(conf) {
+	   window.location.href = "/tables_facilities";
+   }else{
+	   return false;
+   }
+}
+
+</script>
+
+</html>

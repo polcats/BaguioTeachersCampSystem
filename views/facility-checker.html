@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8" />
+   <link rel="icon" type="image/png" href="assets/img/logo.png">
+
+   <title>Baguio Teacher's Camp</title>
+
+   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+   <meta name="viewport" content="width=device-width" />
+   <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+   <link href="assets/css/animate.min.css" rel="stylesheet" />
+   <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet" />
+   <link href='assets/fonts/Roboto.ttf' rel='stylesheet' type='text/css'>
+   <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+   <script src="facility_reservation.js"></script>
+    
+
+<style type="text/css">
+
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+</style>
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+      <div class="sidebar" data-color="green" ; data-image="assets/img/sidebar-5.jpg">
+
+         <div class="sidebar-wrapper">
+                     <ul class="nav">
+               <li>
+                  <a href="/home">
+                     <i class="pe-7s-home"></i>
+                     <p>Dashboard</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/viewemployees">
+                     <i class="pe-7s-user"></i>
+                     <p>Administration</p>
+                  </a>
+               </li>
+               <li><hr width="70%"></li>
+
+               <li>
+                  <a href="/newreservation">
+                     <i class="pe-7s-note"></i>
+                     <p>Create Reservation</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/reservations">
+                     <i class="pe-7s-photo-gallery"></i>
+                     <p>Reservations</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/newregistration">
+                     <i class="pe-7s-pen"></i>
+                     <p>Create Registration</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/guests">
+                     <i class="pe-7s-albums"></i>
+                     <p>Registrations</p>
+                  </a>
+               </li>
+               <li class="active">
+                  <a href="/checkavailable">
+                     <i class="pe-7s-search"></i>
+                     <p>Check Facilities</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/tables_facilities">
+                     <i class="pe-7s-config"></i>
+                     <p>Facilities</p>
+                  </a>
+               </li>
+               <li>
+                  <a href="/home?action=logout">
+                     <i class="pe-7s-power"></i>
+                     <p>Log Out</p>
+                  </a>
+               </li>
+            </ul>
+
+         </div>
+      </div>
+      <div class="main-panel">
+         <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+               <div class="navbar-header">
+                  <a class="navbar-brand">Facility Checker</a>
+               </div>
+               <div class="collapse navbar-collapse">
+                  <ul class="nav navbar-nav navbar-left">
+
+                     <li class="separator hidden-lg hidden-md"></li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+
+            <div class="content">
+               <div class="container-fluid">
+                  <div class="col-md-12">
+                      <div class="card">
+                         <div class="header">
+                              <h4 class="title">Facility Checker</h4>
+                              <a class="category" href="facility-checker.html"></a>
+                         </div>
+              <div class="content" id="fac_content">
+				<ul class="nav nav-tabs"><!--TABS-->
+				  <li class="active"><a data-toggle="tab" href="#tab1">Available Facilities</a></li>
+				  <li><a data-toggle="tab" href="#tab2">Reserved and Occupied</a></li>
+				</ul>
+				 <div class="tab-content">
+				  <div id="tab1" class="tab-pane fade in active">
+				            <div class="content">
+            <div class="container-fluid">
+                <div class="col-md-12">
+                     <div class="card">
+                        <div class="header">
+                           <h4 class="title">Check Available Facilities During a Period of Time</h4>
+                           <p class="category"></p>
+                        </div>
+                        <div class="content">
+                           <div class="row">
+                              <div class="col-md-3">
+                              <label class="" for="type">Facility Type:</label>
+                                 <select class="form-control" id="type">
+                                    <option value="halls">Conference Halls</option>
+                                    <option value="cottages">Cottages</option>
+                                    <option value="guesthouses">Guesthouses</option>
+                                    <option value="dormitories">Dormitories</option>
+                                    <option value="dinings">Dining Areas / Kitchen</option>
+                                    <option value="others">Other Rentables</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-3">
+                                 <label for="arrival">Start Date:</label>
+                                 <input name="arrival" type="date" placeholder="" class="form-control" required="" id="startdate">
+                              </div>
+                              <div class="col-md-3">
+                              <label for="departure">End Date:</label>
+                                 <input name="departure" type="date" placeholder="" class="form-control" required="" id="enddate">
+                              </div>
+                           </div>
+                           <hr>
+                           <button type="submit" class="btn btn-info btn-fill pull-right" onclick="checkAvailable();">Filter</button>
+                           <div class="clearfix"></div>
+
+                        </div>
+                     </div>
+                  </div>
+            </div>
+            <div class="content">
+               <div class="container-fluid">
+                     <div class="col-md-12">
+                        <div class="card" id="availableresult">
+
+
+
+						</div>
+					</div>
+				 </div>
+			  </div>
+            </div><!--End of Tab1 Content-->
+          </div>
+			 
+				  <div id="tab2" class="tab-pane fade">
+					<div class="content">
+					  <div class="container-fluid">
+					    <div class="row">
+						   <div class="col-md-12">
+						   <div class="card">
+							<div class="content">
+								<div class="row">
+									<div class="col-md-12">
+
+
+
+<form>
+                  <div class="col-md-6">
+                                    <label for='facility'>Facility Type</label>
+                                    <select id="facility" name='facility' class="form-control" onchange="showFacilities()">
+                                       <option value="def">Choose a Type</option>
+                                       <option value="conference_halls">Conference Halls</option>
+                                       <option value="cottages_guesthouses">Cottages/Guesthouses</option>
+                              <option value="dormitories">Dormitory</option>
+                                        <option value="dorm_rooms">Dormitory Rooms</option>
+                                       <option value="dining_kitchen">Dining and Kitchen</option>
+                                       <option value="other_services">Rentables</option>
+                                    </select>
+                                  </div>
+                  <div class="col-md-6">
+                                    <label for='room'>Facility Name</label>
+                                    <select id="facility_list" name='room' class="form-control" onchange="loaddetails()">
+                                       <option value="def">Choose a Type</option>
+                                    </select>
+                                  </div>
+                   </form>
+
+
+
+
+
+									</div>
+								</div>
+							   </div>
+							  </div>
+						   </div>
+						  
+
+
+
+
+
+                  <div class="col-md-6">
+                     <div class="card">
+                        <div class="header">
+                           <h4 class="title">Reservations</h4>
+                        </div>
+                     
+                         <div class="content table-responsive table-full-width">
+                  <table class="table table-hover table-striped">
+                   <thead>
+                    <th>Name</th>
+                    <th>Arrival</th>
+                    <th>Departure</th>
+                    <th></th>
+                    </thead>
+                    <tbody id="reservations">
+                                    
+                    </tbody>
+                    </table>
+                   </div>
+                                 </div>
+                      </div>
+                    
+                  <!--end of reserved-->
+           <div class="col-md-6">
+                     <div class="card">
+                        <div class="header">
+                           <h4 class="title">Checked-In</h4>
+                        </div>
+                        <div class="content table-responsive table-full-width">
+                          <table class="table table-hover table-striped">
+                                 <thead>
+                                    <th>Name</th>
+                                    <th>Arrival</th>
+                                    <th>Departure</th>
+                                    <th></th>
+                                 </thead>
+                                 <tbody id="registrations">
+                                    
+                                 </tbody>
+                              </table>
+                        </div>
+                     </div>
+                   </div>
+
+
+
+
+
+
+
+					   </div>
+					</div>
+					   </div><!--End of Content2-->
+            		 </div> <!--End of Tab 2-->
+        		   </div><!--End of tab content-->
+                </div><!--End of whole content-->
+             </div><!--End of card-->
+          </div><!--End of col-md-->
+       </div><!--End of container-->
+	</div><!--End of Main Content-->
+  </div><!--End of Main Panel-->
+</div><!--End of Wrapper-->
+
+</body>
+<!--   Core JS Files   -->
+<script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="assets/js/bootstrap-checkbox-radio-switch.js"></script>
+<!--  Charts Plugin -->
+<script src="assets/js/chartist.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="assets/js/bootstrap-notify.js"></script>
+<!-- Light Bootstrap Table Core javascript and methods-->
+<script src="assets/js/light-bootstrap-dashboard.js"></script>
+
+<script src="/facilityscript?type=conference_halls"></script>
+<script src="/facilityscript?type=dormitories"></script>
+<script src="/facilityscript?type=cottages_guesthouses"></script>
+<script src="/facilityscript?type=dining_kitchen"></script>
+<script src="/facilityscript?type=other_services"></script>
+<script src="/facilityscript?type=dorm_rooms"></script>
+
+<script type="text/javascript">
+
+function checkAvailable() {
+   var type = $("#type").val();
+   var start = $("#startdate").val();
+   var end = $("#enddate").val();
+   console.log(start + "x" + end);
+   if(start == "" || end == "") {
+      if(start == "") {
+         alert("Please enter an arrival date!");
+      } else if(end == "") {
+         alert("Please enter a departure date!");
+      }
+      return false;
+   } else
+   if(start > end) {
+      alert("Error: The end date must be later than the start date.");
+      $("#enddate").val("");
+      end = "";
+      return false;
+   }
+
+    $.get("/getavailable?type="+type+"&arrival="+start+"&departure="+end,{},function(data){
+         if(data)  { 
+            $("#availableresult").html(data); 
+         }
+    });
+
+}
+</script>
+
+
+<script>
+var currenttype = "";
+   function showFacilities() {
+      var type = $("#facility").val();
+
+      if(type == "def") {
+         return false;
+      }
+      currenttype = type;
+       $("#facility_list").html(`<option value="def">Choose a Type</option>`);
+
+      if(type == "cottages_guesthouses") {
+         for(i = 0; i < cottages_guesthouses.length; i++) {
+            $("#facility_list").append(`<option value="`+cottages_guesthouses[i].id+`">`+cottages_guesthouses[i].name+`</option>`);
+         }
+      } else if(type == "dormitories") {
+         for(i = 0; i < dormitories.length; i++) {
+            $("#facility_list").append(`<option value="`+dormitories[i].id+`">`+dormitories[i].name+`</option>`);
+         }
+      } else if(type == "dining_kitchen") {
+         for(i = 0; i < dining_kitchen.length; i++) {
+            $("#facility_list").append(`<option value="`+dining_kitchen[i].id+`">`+dining_kitchen[i].name+`</option>`);
+         }
+      } else if(type == "conference_halls") {
+         for(i = 0; i < conference_halls.length; i++) {
+            $("#facility_list").append(`<option value="`+conference_halls[i].id+`">`+conference_halls[i].name+`</option>`);
+         }
+      } else if(type == "other_services") {
+         for(i = 0; i < other_services.length; i++) {
+            $("#facility_list").append(`<option value="`+other_services[i].id+`">`+other_services[i].name+`</option>`);
+         }
+      } else if(type == "dorm_rooms") {
+         for(i = 0; i < dorm_rooms.length; i++) {
+            $("#facility_list").append(`<option value="`+dorm_rooms[i].id+`">`+dorm_rooms[i].name+`</option>`);
+         }
+      }
+   }
+
+
+   function loaddetails() {
+      var id = $(`#facility_list`).val();
+
+      if(id == "def") {
+         return false;
+      }
+      $.get(`/getreservations?id=`+id+`&type=`+currenttype+``,{},function(data){
+        if(data)  {
+            $("#reservations").html(data);
+        }
+    });
+
+      $.get(`/getregistrations?id=`+id+`&type=`+currenttype+``,{},function(data){
+        if(data)  {
+            $("#registrations").html(data);
+        }
+    });
+
+   }
+</script>
+</html>
