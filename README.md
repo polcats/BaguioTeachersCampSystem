@@ -1,6 +1,6 @@
 # BaguioTeachersCampSystem
-A Web Based Reservation and Registration System
-An on-the-job training project at Baguio Teachers' Camp
+<p>Web Based Reservation and Registration System.</p>
+<p>An OJT project for Baguio Teachers' Camp.</p>
 
 <h2>Team</h2>
 <ul>
